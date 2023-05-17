@@ -1,0 +1,187 @@
+<head>
+    <style type="text/css">
+     
+*{
+  font-family: 'Poppins', sans-serif;
+  margin:0; padding:0;
+  box-sizing: border-box;
+  outline: none; 
+  border:none;
+  text-transform: capitalize;
+  transition: all .2s linear;
+}
+body{
+    background: url('../images/back.jpeg') no-repeat;
+    background-size: cover;
+}
+.land{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:25px;
+  min-height: 100vh;
+}
+.land form{
+  padding:20px;
+  width:700px;
+  background: rgba(0,0 , 0, 0.5);
+}
+.land form .ba{
+  flex:1 1 250px; 
+}
+
+.land form .ba .title{
+  font-size: 25px;
+  color:gold;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.land form  .ba .inputBox{
+  margin:15px 0;
+}
+
+.land form .ba .inputBox span{
+  margin-bottom: 10px;
+  display: block;
+  color: cyan;
+    font-weight:bold;
+    font-size: 20px;
+}
+
+.land form  .ba .inputBox input{
+  width: 100%;
+  border:1px solid #ccc;
+  padding:10px 15px;
+  font-weight: 200;
+  font-size: 15px;
+  text-transform: none;
+}
+
+.land form .ba .inputBox input:focus{
+  border:1px solid #000;
+}
+
+.land form .ba .flex{
+  display: flex;
+  gap:15px;
+}
+
+.land form.ba .flex .inputBox{
+  margin-top: 5px;
+}
+
+.land form .ba .inputBox img{
+  height: 34px;
+  margin-top: 5px;
+}
+
+.land form .submit-btn{
+  width: 100%;
+  padding:12px;
+  font-size: 25px;
+  font-weight: 650px;
+  background: #27ae60;
+  color: whitesmoke;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.land form .submit-btn:hover{
+  background: #2ecc71;
+}
+    </style>
+
+   <script>
+
+    const postdata=(event)=>{
+        event.preventDefault();
+
+          const querystring=window.location.search;
+          const urlparams=new URLSearchParams(querystring);
+          const id=urlparams.get('id');
+
+          const owner=document.querySelector('#o').value;
+          const vc=document.querySelector('#vc').value;
+          const mandal=document.querySelector('#m').value;
+          const dist=document.querySelector('#dis').value;
+          const state=document.querySelector('#st').value;
+          const pin=document.querySelector('#pno').value;
+          const survey=document.querySelector('#sur').value;
+          const land=document.querySelector('#e').value;
+
+          fetch("http://localhost:3500/insertdata",{
+            method:'POST',
+            body:JSON.stringify({
+                owner:owner,
+                village:vc,
+                mandal:mandal,
+                dist:dist,
+                state:state,
+                pin:pin,
+                survey:survey,
+                land:land,
+                id:id
+            }),
+            headers: {
+                 "Content-type": "application/json; charset=UTF-8"
+               } 
+          }).then(res=>{
+            console.log(res.data);
+          })
+
+          window.location.href = 'page7.html';
+    }
+
+   </script>
+
+
+</head>
+<body>
+    <div class="land">
+    <form name = "land">
+    <div class="ba">
+        <h3 class="title" >LAND DETAILS</h3>
+    
+        <div class="inputBox">
+            <span>Owner's Name:</span>
+            <input type="text" placeholder="Enter OwnerName" required id="o">
+        </div>
+        <div class="inputBox">
+           <h2 class="title">Location:</h2>
+        </div>
+        <div class="inputBox">
+            <span>Village/City:</span>
+            <input type="text" placeholder="Enter VillageName" required id="vc">
+        </div>
+        <div class="inputBox">
+            <span>Mandal:</span>
+            <input type="text" placeholder="Enter MandalName" required id="m">
+        </div>
+        <div class="inputBox">
+            <span>District:</span>
+            <input type="text" placeholder="Enter DistrictName" required id="dis">
+        </div>
+        <div class="inputBox">
+            <span>State:</span>
+            <input type="text" placeholder="Enter DistrictName" required id="st">
+        </div>
+        <div class="inputBox">
+            <span>Pin No:</span>
+            <input type="text" placeholder="Enter Pin No" required id="pno">
+        </div>
+        <div class="inputBox">
+            <span>Survey Number:</span>
+            <input type="text" placeholder="Enter SurveyNo." required id="sur">
+        </div>
+        <div class="inputBox">
+            <span>Extent of Land:</span>
+            <input type="text" placeholder="Enter Extent_Of_Land" required id="e">
+        </div>
+
+    <button id="xy" onclick="postdata(event)">SERVICES</button>
+        &nbsp;&nbsp;<button id="Add" onclick=" " >ADD</button></form>
+    </div>
+    </form>
+    </div> 
+    <script src="../scripts/user.js"></script>
+</body>

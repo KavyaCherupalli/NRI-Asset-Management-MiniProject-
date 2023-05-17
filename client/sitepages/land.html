@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAND VISIT</title>
+    <style>
+        .con{
+            min-height: 100vh;
+    position:relative
+        }
+        .con::before{
+    content:'';
+    background-image:url("../images/landimg1.jpg");
+    background-size:     cover;                  
+    background-repeat:   no-repeat;
+    background-position: center center;    
+    position: absolute;
+    top:0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0.4;
+}
+li{
+    font-size: 20px;
+    margin-left: 5%;
+    color:blue;
+}
+h1{
+    color:darkslategrey;
+    font-size: 45px;
+    text-align: center;
+}
+h3{
+    margin-left:4% ;
+    font-size: 25px;
+    color:sienna;
+}
+.blink{
+		width: 300px;
+		height: 50px;
+	    background-color:gray;
+		padding: 20px;	
+      text-align: center;
+		line-height: 50px;
+        border-radius: 18px;
+	}
+	button{
+		font-size: 25px;
+		font-family: sans-serif;
+        background-color:gray;
+		color: whitesmoke;
+        text-align: center;
+        font-weight: bold;
+		animation: blink 1s linear infinite;
+	}
+@keyframes blink{
+0%{opacity: 0;}
+50%{opacity: .5;}
+100%{opacity: 1;}
+}
+marquee{
+    font-size: 30px;
+      font-weight: 800;
+      color:saddlebrown;
+      font-family: sans-serif;
+      scroll amount: 30px;
+}
+    </style>
+</head>
+<body >
+    <div class="con">
+    <marquee scrollamount="20">****Subscription amount: Rs.5000***</marquee>
+    <h1>LAND VISIT SERVICE</h1>
+        <ul type="square">
+        <li>We will allocate our Employees to your site location</li>
+        <li>Allocated Employees will take the picture of the site</li>
+        <h3>Picture contains:</h3>
+        <ul type="disc">
+        <li>
+            Visilbilty of site
+        </li>
+        <li>
+            Time Duration of our visit
+        </li>
+        <li>
+            Allocated Employee photo in it
+        </li>
+        </ul>
+        <li>With above details user can get More Clarity on the site</li>
+        </ul>
+        <h3>User may clear their doubts like:</h3>
+        <ul type="disc">
+        <li>
+        Whether anybody occupied the land
+        </li>
+        <li>
+        How the site is looking etc...
+        </li>
+        </ul>
+        <center>
+        
+
+        <form>
+            <button type="submit" formaction="pay.html">click here to pay</button>
+         </form>
+      
+        </center>
+    </div>
+</body>
+</html>

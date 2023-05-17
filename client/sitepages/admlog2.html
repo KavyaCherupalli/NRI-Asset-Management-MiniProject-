@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <style>
+      body{
+        background-image: url(../images/back.jpeg);
+        background-size: cover; 
+        margin-left: 2%;
+      }
+      h1{
+        text-align: center;
+      }
+      button{
+        border-radius: 18px;
+        width: 40%;
+  border:1px solid #ccc;
+  padding:10px 15px;
+  margin-left: 3%;
+  margin-bottom: 3%;
+  font-weight: 200;
+  font-size: 15px;
+  text-transform: none;
+      }
+      #a{
+        border-radius: 18px;
+        width: 20%;
+  border:1px solid #ccc;
+  padding:10px 15px;
+  margin-left: 3%;
+  margin-bottom: 3%;
+  font-weight: 200;
+  font-size: 15px;
+  text-transform: none;
+      }
+      #b{
+        border-radius: 18px;
+        width: 30%;
+  border:1px solid #ccc;
+  padding:10px 15px;
+  margin-left: 3%;
+  margin-bottom: 3%;
+  font-weight: 200;
+  font-size: 15px;
+  text-transform: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1><i>WELCOME TO ADMIN CONTROL PAGE</i></h1>
+    <button onclick="fetchNotActiveProperties()" value="udb">
+      PENDING PROPERTIES DATABASE
+    </button>
+    <button onclick="fetchUserDatabase()" value="udb">USER DATABASE</button>
+
+    <div id="usdb" style="display: none">
+      <h1>User Database</h1>
+      <br />
+      <p id="userDbContent"></p>
+    </div>
+    <div id="pddb">
+      <h1>Properties Database</h1>
+      <br />
+      <p id="propertiesDbContent"></p> 
+    </div>
+
+    <script>
+      const userDatabase = document.getElementById("usdb");
+      const userDbContent = document.getElementById("userDbContent");
+      const pendingRequests = document.getElementById("pddb");
+
+      const propertiesDbContent = document.getElementById(
+        "propertiesDbContent"
+      );
+
+      function showPropertiesDatabase() {
+        userDatabase.style.display = "none";
+        pendingRequests.style.display = "block";
+      }
+
+      function showUserDatabase() {
+        userDatabase.style.display = "block";
+        pendingRequests.style.display = "none";
+      }
+
+      function showPendingRequests() {
+        userDatabase.style.display = "none";
+        pendingRequests.style.display = "block";
+      }
+
+      function fetchUserDatabase() {
+        fetch("http://localhost:3000/users")
+          .then((response) => response.json())
+          .then((data) => {
+            // Process and display the fetched user database content
+            const users = data.map((user) => {
+              return `<strong>Name:</strong> ${user.name}, <strong>Aadhar:</strong> ${user.aadhar_no}, <strong>Mobile:</strong> ${user.phone_number}, <strong>Address:</strong> ${user.address}, <strong>Email:</strong> ${user.email}<br><br>`
+            });
+
+            userDbContent.innerHTML = users.join("");
+          })
+          .catch((error) => {
+            console.log("Error fetching user database:", error);
+          });
+
+        showUserDatabase();
+      }
+
+      function fetchNotActiveProperties() {
+        fetch("http://localhost:3000/properties/notactive")
+          .then((response) => response.json())
+          .then((data) => {
+            // Process and display the fetched properties database content
+             const properties = data.map((property) => {
+              return `<strong>Owner Id:</strong> ${property.id} , <strong>Name:</strong> ${property.owner_name} , <strong>Village:</strong> ${property.village} , <strong>Mandal:</strong> ${property.mandal} , <strong>District:</strong> ${property.district} , <strong>Pin Number:</strong> ${property.pin_number} , <strong>Status:</strong> ${property.status}<br>  <input type='file'/ id='b'> <button onClick='sendimg()' id='a'>Save to database</button> <br>`; 
+          });
+
+            propertiesDbContent.innerHTML = properties.join("");
+          })
+          .catch((error) => {
+            console.log("Error fetching properties database:", error);
+          });
+
+        showPropertiesDatabase();
+      }
+
+      const sendimg=(event)=>{
+        console.log("hello")  
+        console.log(event.target.files) 
+           const file = event.target.files[0];
+            
+             console.log(file)
+            const reader = new FileReader();
+            console.log(reader)
+            reader.readAsDataURL(file);
+ 
+            const data=null;
+             reader.onload = function() {
+               console.log(reader.result)
+               data=reader.result;
+           }
+}
+
+
+
+      // Initially, show the pending requests section
+      showPendingRequests();
+    </script>
+  </body>
+</html>

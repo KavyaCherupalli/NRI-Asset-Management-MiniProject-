@@ -1,0 +1,131 @@
+<head>
+      <style type="text/css">
+       
+*{
+  font-family: 'Poppins', sans-serif;
+  margin:0; padding:0;
+  box-sizing: border-box;
+  outline: none; 
+  border:none;
+  text-transform: capitalize;
+  transition: all .2s linear;
+}
+body{
+    background: url('../images/back.jpeg') no-repeat;
+    background-size: cover;
+}
+.reg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding:25px;
+  min-height: 100vh;
+}
+.reg form{
+  padding:20px;
+  width:700px;
+  background: rgba(0,0 , 0, 0.5);
+}
+.reg form .ab{
+  flex:1 1 250px; 
+}
+
+.reg form .ab .title{
+  font-size: 25px;
+  color:gold;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.reg form  .ab .inputBox{
+  margin:15px 0;
+}
+
+.reg form .ab .inputBox span{
+  margin-bottom: 10px;
+  display: block;
+  color: cyan;
+    font-weight:bold;
+    font-size: 20px;
+}
+
+.reg form  .ab .inputBox input{
+  width: 100%;
+  border:1px solid #ccc;
+  padding:10px 15px;
+  font-weight: 200;
+  font-size: 15px;
+  text-transform: none;
+}
+
+.reg form .ab .inputBox input:focus{
+  border:1px solid #000;
+}
+
+.reg form .ab .flex{
+  display: flex;
+  gap:15px;
+}
+
+.reg form.ab .flex .inputBox{
+  margin-top: 5px;
+}
+
+.reg form .ab .inputBox img{
+  height: 34px;
+  margin-top: 5px;
+}
+
+.reg form .submit-btn{
+  width: 100%;
+  padding:12px;
+  font-size: 25px;
+  font-weight: 650px;
+  background: #27ae60;
+  color: whitesmoke;
+  margin-top: 5px;
+  cursor: pointer;
+}
+.reg form .submit-btn:hover{
+  background: #2ecc71;
+}
+h3{
+  align-items: center;
+}
+      </style>
+    </head>
+    <body>
+      <div class="reg">
+    <form name = "reg">
+    <div class="ab">
+      <h3 class="title">REGISTRATION PAGE</h3>
+    
+      <div class="inputBox">
+          <span>Name :</span>
+          <input type="text" placeholder="Enter FullName" required id="u">
+      </div>
+      <div class="inputBox">
+        <span>Adhar No :</span>
+        <input type="text" placeholder="Enter AdharNo" required id="p">
+    </div>
+    <div class="inputBox">
+      <span>Mobile No :</span>
+      <input type="text" placeholder="Enter MobileNumber" required id="m">
+  </div>
+  <div class="inputBox">
+    <span>Address :</span>
+    <input type="text" placeholder="Enter Address" required id="a">
+</div>
+<div class="inputBox">
+  <span>Email Id:</span>
+  <input type="text" placeholder="Enter Email" required id="e">
+</div>
+    <input type = "button" value = "REGISTER" id="regBtn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type = "reset" value = "RESET" id="xy"></td></tr>
+  </div>
+  <!-- <button  value = "REGISTER" id="regBtn"></button>
+<button  value = "RESET" id="xy"></button> -->
+    </form>
+    </div>
+    <script src="../scripts/register.js"></script>
+</body>
