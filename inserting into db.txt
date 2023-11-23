@@ -1,0 +1,10 @@
+INSERT INTO properties (owner_name, village, mandal, district, state, pin_number, survey, extent_of_land, user_id, status)
+VALUES
+  ('Pranav', 'Rampur Village', 'Yamjal Mandal', 'Rangareddy District', 'Telangana State', '123456', 'Survey 1', '9 acres', 1, 'Pending'),
+  ('Raghav', 'Rangapur Village', 'Kothur Mandal', 'Mahaboobnagar District', 'Telangana State', '654321', 'Survey 2', '5 acres', 2, 'Pending'),
+  ('Virat', 'Chadhur Village', 'Marriguda Mandal', 'Nalgonda District', 'Telangana State', '987654', 'Survey 3', '8 acres', 3, 'Pending'),
+  ('Madhavi', 'Sharegudda Village', 'Ibrahimpatnam Mandal', 'Rangareddy District', 'CDE State', '246810', 'Survey 4', '12 acres', 1, 'Pending'),
+  ('Nikhil', 'Penjarla Village', 'Kothur Mandal', 'Rangareddy District', 'Telangana State', '135792', 'Survey 5', '7 acres', 1, 'Pending'),
+  ('Bhavish', 'Dhulapur Village', 'Farnial Mandal', 'Dhule District', 'Maharashtra State', '864209', 'Survey 6', '15 acres', 2, 'Pending'),
+  ('Kalyani', 'Nagawal Village', 'Kolda Mandal', 'Khordha District', 'Orissa State', '975310', 'Survey 7', '9 acres', 2, 'Pending');
+

@@ -1,0 +1,233 @@
+//OPENING STEPS
+STEP1:cd server
+node index.js
+STEP2:split terminal
+cd db_back
+node index.js
+STEP3:on browser:
+localhost:3000
+localhost:3500
+STEP4:home.html(GO LIVE)
+-->admin,user
+admin=>admin login:username=>admin,password=>password
+-->user=>enter username and email of user details
+=>register,land details,payment.
+STEP5:UPLOADING
+upload and check whether db_back has that particular image or not.
+
+*****  Step 1 - Database creation *****
+
+- CREATE DATABASE demo;
+- USE demo;
+Password:Amkv@1234	
+- 
+CREATE TABLE user_properties (
+  id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(50) NOT NULL,
+  aadhar_no BIGINT(12) NOT NULL,
+  phone_number VARCHAR(20),
+  address VARCHAR(255) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+(Table needs to be of same names donot change table name)
+
+
+-
+CREATE TABLE properties (
+  id INT NOT NULL AUTO_INCREMENT,
+  owner_name VARCHAR(50) NOT NULL,
+  village VARCHAR(50) NOT NULL,
+  mandal VARCHAR(50) NOT NULL,
+  district VARCHAR(50) NOT NULL,
+  state VARCHAR(50) NOT NULL,
+  pin_number INT NOT NULL,
+  survey VARCHAR(50) NOT NULL,
+  extent_of_land DECIMAL(10,2) NOT NULL,
+  user_id INT NOT NULL,
+  status VARCHAR(50) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (user_id) REFERENCES user_properties(id)
+);
+
+- ADD RANDOM RECORDS TO THE DATABASE TO WORK WITH -
+
+* Users Data *
+
+INSERT INTO user_properties (name, aadhar_no, phone_number, address, email, property_ids) 
+VALUES 
+  ('John Doe', '1234567890', '9876543210', '123 Main Street', 'johndoe@example.com', ''),
+  ('Jane Smith', '0987654321', '0123456789', '456 Elm Street', 'janesmith@example.com', ''),
+  ('Mike Johnson', '5678901234', '0123456789', '789 Oak Street', 'mikejohnson@example.com', '');
+
+* Properties Data *
+
+INSERT INTO properties (owner_name, village, mandal, district, state, pin_number, survey, extent_of_land, user_id, status)
+VALUES
+  ('John Doe', 'ABC Village', 'XYZ Mandal', 'PQR District', 'LMN State', '123456', 'Survey 1', '10 acres', 1, 'Pending'),
+  ('Jane Smith', 'DEF Village', 'UVW Mandal', 'STU District', 'OPQ State', '654321', 'Survey 2', '5 acres', 2, 'Pending'),
+  ('Mike Johnson', 'GHI Village', 'RST Mandal', 'JKL District', 'FGH State', '987654', 'Survey 3', '8 acres', 3, 'Pending'),
+  ('Alice Brown', 'MNO Village', 'HIJ Mandal', 'EFG District', 'CDE State', '246810', 'Survey 4', '12 acres', 1, 'Pending'),
+  ('Bob Wilson', 'PQR Village', 'LMN Mandal', 'JKL District', 'IJK State', '135792', 'Survey 5', '7 acres', 1, 'Pending'),
+  ('Emma Davis', 'STU Village', 'OPQ Mandal', 'MNO District', 'GHI State', '864209', 'Survey 6', '15 acres', 2, 'Pending'),
+  ('David Johnson', 'VWX Village', 'RST Mandal', 'UVW District', 'XYZ State', '975310', 'Survey 7', '9 acres', 2, 'Pending'),
+  ('Sophia Miller', 'YZA Village', 'BCD Mandal', 'EFG District', 'HIJ State', '413520', 'Survey 8', '6 acres', 3, 'Pending');
+
+
+***** Step 2- Start up Server *****
+
+cd Server
+
+npm install {Install all the dependencies}
+
+change db information in the index.js file
+
+const connection = mysql.createConnection({
+  host: "localhost",
+  user: "<your-username>",
+  password: "<your-password>",
+  database: "<your-database>",
+});
+
+node index.js (Start up the server)
+
+--- YOU MIGHT GET AN ERROR --- {client does not support authentication protocol requested by server}
+
+In mysql cmd run these commands (Using the root account (acount you are using in the user: "<your-username>",))
+
+ALTER USER '<your-username>'@'localhost' IDENTIFIED WITH mysql_native_password BY '<your-password>';
+flush privileges;
+
+--- SERVER SHOULD START PROPERLY SAYING ---
+
+Server started on port 3000
+Connected to MySQL database!
+
+
+---- NOW CLIENT WILL WORK FINE ----
+
+Go to registration.html to register user. login.html to login as a user. admin page to view the user database and pending requests
+
+
+
+
+
+Extra col needed to be added in user_properties:
+ALTER TABLE user_properties
+ADD COLUMN property_ids VARCHAR(25);
+
+INSERT INTO properties (owner_name, village, mandal, district, state, pin_number, survey, extent_of_land, user_id, status)
+VALUES
+  ('Pranav', 'Rampur Village', 'Yamjal Mandal', 'Rangareddy District', 'Telangana State', '123456', 'Survey 1', 9, 1, 'Pending'),
+  ('Raghav', 'Rangapur Village', 'Kothur Mandal', 'Mahaboobnagar District', 'Telangana State', '654321', 'Survey 2', 5, 2, 'Pending'),
+  ('Virat', 'Chadhur Village', 'Marriguda Mandal', 'Nalgonda District', 'Telangana State', '987654', 'Survey 3', 8, 3, 'Pending'),
+  ('Madhavi', 'Sharegudda Village', 'Ibrahimpatnam Mandal', 'Rangareddy District', 'CDE State', '246810', 'Survey 4', 12, 1, 'Pending'),
+  ('Nikhil', 'Penjarla Village', 'Kothur Mandal', 'Rangareddy District', 'Telangana State', '135792', 'Survey 5', 7, 1, 'Pending'),
+  ('Bhavish', 'Dhulapur Village', 'Farnial Mandal', 'Dhule District', 'Maharashtra State', '864209', 'Survey 6', 15, 2, 'Pending'),
+  ('Kalyani', 'Nagawal Village', 'Kolda Mandal', 'Khordha District', 'Orissa State', '975310', 'Survey 7', 9, 2, 'Pending');
+
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Amkv@1234';
+
+
+JSON.stringify()
+
+A common use of JSON is to exchange data to/from a web server.
+
+When sending data to a web server, the data has to be a string.
+
+Convert a JavaScript object into a string with JSON.stringify().
+
+Stringify a JavaScript Object
+Imagine we have this object in JavaScript:
+
+const obj = {name: "John", age: 30, city: "New York"};
+Use the JavaScript function JSON.stringify() to convert it into a string.
+
+const myJSON = JSON.stringify(obj);
+
+Express.js
+Last Updated : 19 Apr, 2023
+Read
+Discuss
+Courses
+Practice
+Video
+Express.js is a small framework that works on top of Node.js web server functionality to simplify its APIs and add helpful new features. It makes it easier to organize your application’s functionality with middleware and routing. It adds helpful utilities to Node.js HTTP objects and facilitates the rendering of dynamic HTTP objects.
+
+Express.js Tutorial
+
+Why Express ?
+
+Develops Node.js web applications quickly and easily.
+It’s simple to set up and personalise.
+Allows you to define application routes using HTTP methods and URLs.
+Includes a number of middleware modules that can be used to execute additional requests and responses activities.
+Simple to interface with a variety of template engines, including Jade, Vash, and EJS.
+Allows you to specify a middleware for handling errors.
+
+Installing Express:
+
+We can install it with npm. Make sure that you have Node.js and npm installed.
+
+Step 1: Creating a directory for our project and make that our working directory.
+
+$ mkdir gfg
+$ cd gfg 
+Step 2: Using npm init command to create a package.json file for our project.
+
+$ npm init
+This command describes all the dependencies of our project. The file will be updated when adding further Installing Express
+
+Step 3: Now in your gfg(name of your folder) folder type the following command line:
+
+$ npm install express --save
+
+
+Express.js
+Last Updated : 19 Apr, 2023
+Read
+Discuss
+Courses
+Practice
+Video
+Express.js is a small framework that works on top of Node.js web server functionality to simplify its APIs and add helpful new features. It makes it easier to organize your application’s functionality with middleware and routing. It adds helpful utilities to Node.js HTTP objects and facilitates the rendering of dynamic HTTP objects.
+
+Express.js Tutorial
+
+Why Express ?
+
+Develops Node.js web applications quickly and easily.
+It’s simple to set up and personalise.
+Allows you to define application routes using HTTP methods and URLs.
+Includes a number of middleware modules that can be used to execute additional requests and responses activities.
+Simple to interface with a variety of template engines, including Jade, Vash, and EJS.
+Allows you to specify a middleware for handling errors.
+Installing Express:
+
+
+We can install it with npm. Make sure that you have Node.js and npm installed.
+
+Step 1: Creating a directory for our project and make that our working directory.
+
+$ mkdir gfg
+$ cd gfg 
+Step 2: Using npm init command to create a package.json file for our project.
+
+$ npm init
+This command describes all the dependencies of our project. The file will be updated when adding further Installing Express
+
+Step 3: Now in your gfg(name of your folder) folder type the following command line:
+
+$ npm install express --save
+
+
+JavaScript addEventListener()
+
+The addEventListener() method is used to attach an event handler to a particular element. It does not override the existing event handlers. Events are said to be an essential part of the JavaScript. A web page responds according to the event that occurred. Events can be user-generated or generated by API's. An event listener is a JavaScript's procedure that waits for the occurrence of an event.
+
+The addEventListener() method is an inbuilt function of JavaScript. We can add multiple event handlers to a particular element without overwriting the existing event handlers.
+
+Syntax
+element.addEventListener(event, function, useCapture);  
