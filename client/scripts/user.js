@@ -18,12 +18,14 @@ fetch(`http://localhost:3000/users/${userName}`)
       .then((response) => response.json())
       .then((data) => {
         data.forEach((property) => {
-          propertyDetails += `Property - ${property.village}, ${property.mandal}, ${property.district}, ${property.pin_number} --- ${property.status}\n`;
+         
+          const  image=property.image!=null?`<img src="http://localhost:3500/${property.image}"/><br>`:null;
+          propertyDetails += `<br>Property - ${property.village}, ${property.mandal}, ${property.district}, ${property.pin_number} --- ${property.status} +<br>${image}\n<br>`;
         });
 
-        bd.innerText = propertyDetails;
+        bd.innerHTML = propertyDetails;
       });
-  });
+  })
 
 // const userId = params.get("id");
 // console.log(userId); // 123

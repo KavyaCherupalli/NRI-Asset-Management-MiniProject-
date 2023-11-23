@@ -14,7 +14,10 @@ function validReg() {
   const mobileRegex = /^[0-9]{10}$/;
   const addressRegex = /^[a-zA-Z0-9\s,'-]+$/;
   const emailRegex =
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+  // const emailRegex =
+  //   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
   if (!nameRegex.test(name)) {
     alert("Please enter a valid name.");

@@ -40,9 +40,12 @@ li{
  
  .p{
   font-size:20px;
-font-family: arial;  
-    justify-items: left;
+/* font-family: arial;   */
+font-family: Georgia, serif;
+justify-content:center;
+align-items: center;
+    justify-items: center;
     margin-left: 1%;
-     font-style:italic; 
+     font-style:italic;  
         color: black; 
       }

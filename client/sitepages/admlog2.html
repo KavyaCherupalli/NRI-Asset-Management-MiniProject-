@@ -115,7 +115,7 @@
           .then((data) => {
             // Process and display the fetched properties database content
              const properties = data.map((property) => {
-              return `<strong>Owner Id:</strong> ${property.id} , <strong>Name:</strong> ${property.owner_name} , <strong>Village:</strong> ${property.village} , <strong>Mandal:</strong> ${property.mandal} , <strong>District:</strong> ${property.district} , <strong>Pin Number:</strong> ${property.pin_number} , <strong>Status:</strong> ${property.status}<br>  <input type='file'/ id='b'> <button onClick='sendimg()' id='a'>Save to database</button> <br>`; 
+              return `<strong>Owner Id:</strong> ${property.id} , <strong>Name:</strong> ${property.owner_name} , <strong>Village:</strong> ${property.village} , <strong>Mandal:</strong> ${property.mandal} , <strong>District:</strong> ${property.district} , <strong>Pin Number:</strong> ${property.pin_number} , <strong>Status:</strong> ${property.status}<br>  <input type='file' id='b' onChange='storeimg(event)' > <button onClick='sendimg(event,${property.id})' id='a'>Save to database</button> <br>`; 
           });
 
             propertiesDbContent.innerHTML = properties.join("");
@@ -127,12 +127,30 @@
         showPropertiesDatabase();
       }
 
-      const sendimg=(event)=>{
-        console.log("hello")  
-        console.log(event.target.files) 
+      let formdata;
+      const storeimg=(event)=>{
+        console.log(event.target.files[0]) 
            const file = event.target.files[0];
+          console.log(file.filename);
+             formdata=new FormData();
+            formdata.append('image',file);
+      }
+
+      const sendimg=(event,id)=>{
+        console.log("hello")  
+         event.preventDefault();
+           fetch(`http://localhost:3500/saveimg/${id}`,{
+            method:'POST',
+            body:formdata,
+            headers:{
+              'Accept':"multipart/form-data",
+            },
+            credentials:'include'
+           }).then((res)=>console.log(res)).catch((err)=>{
+            console.log(err);
+           })
             
-             console.log(file)
+           /*   console.log(file)
             const reader = new FileReader();
             console.log(reader)
             reader.readAsDataURL(file);
@@ -141,7 +159,7 @@
              reader.onload = function() {
                console.log(reader.result)
                data=reader.result;
-           }
+           } */
 }
 
 
